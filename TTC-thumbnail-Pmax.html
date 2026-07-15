@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200, height=630">
+<title>TTC - P_max = c⁵/G</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    width: 1200px;
+    height: 630px;
+    overflow: hidden;
+    font-family: 'Georgia', 'Times New Roman', serif;
+  }
+
+  .thumbnail {
+    width: 1200px;
+    height: 630px;
+    background: radial-gradient(ellipse at 30% 20%, #1a0a2e 0%, #0a0a1a 50%, #000010 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Stars / particles background */
+  .stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle var(--duration) ease-in-out infinite;
+    animation-delay: var(--delay);
+    opacity: 0;
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.1; }
+    50% { opacity: 0.9; }
+  }
+
+  /* Glow behind formula */
+  .glow {
+    position: absolute;
+    width: 700px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(100, 180, 255, 0.15) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: blur(40px);
+  }
+
+  .glow2 {
+    position: absolute;
+    width: 500px;
+    height: 200px;
+    background: radial-gradient(ellipse, rgba(255, 200, 100, 0.10) 0%, transparent 70%);
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: blur(60px);
+  }
+
+  /* Content */
+  .content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 40px;
+  }
+
+  .label-top {
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    font-size: 14px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: rgba(150, 200, 255, 0.7);
+    margin-bottom: 20px;
+  }
+
+  .title {
+    font-size: 28px;
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: normal;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+  }
+
+  .formula-container {
+    margin: 20px 0;
+  }
+
+  .formula {
+    font-size: 80px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 0 0 40px rgba(150, 200, 255, 0.6), 0 0 80px rgba(150, 200, 255, 0.3);
+    letter-spacing: 3px;
+    line-height: 1;
+  }
+
+  .formula-small {
+    font-size: 52px;
+  }
+
+  .value {
+    font-size: 22px;
+    color: rgba(200, 220, 255, 0.7);
+    margin-top: 12px;
+    letter-spacing: 1px;
+    font-family: 'Courier New', monospace;
+  }
+
+  .subtitle {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 30px;
+    font-style: italic;
+    letter-spacing: 0.5px;
+  }
+
+  .author {
+    font-size: 16px;
+    color: rgba(200, 200, 220, 0.8);
+    margin-top: 25px;
+    letter-spacing: 1px;
+  }
+
+  .author-name {
+    color: #ffcc66;
+    font-weight: bold;
+  }
+
+  .ttc-badge {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 6px 20px;
+    border: 1px solid rgba(150, 180, 220, 0.4);
+    border-radius: 20px;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: rgba(180, 200, 230, 0.8);
+    font-family: 'Arial', sans-serif;
+  }
+
+  /* Corner decorations */
+  .corner {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-color: rgba(100, 150, 200, 0.15);
+    border-style: solid;
+  }
+  .corner-tl { top: 25px; left: 25px; border-width: 2px 0 0 2px; }
+  .corner-tr { top: 25px; right: 25px; border-width: 2px 2px 0 0; }
+  .corner-bl { bottom: 25px; left: 25px; border-width: 0 0 2px 2px; }
+  .corner-br { bottom: 25px; right: 25px; border-width: 0 2px 2px 0; }
+
+  /* URL at bottom */
+  .url {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    color: rgba(180, 200, 220, 0.5);
+    letter-spacing: 2px;
+    z-index: 10;
+  }
+</style>
+</head>
+<body>
+
+<div class="thumbnail">
+  <div class="glow"></div>
+  <div class="glow2"></div>
+
+  <!-- Stars -->
+  <div class="stars" id="stars"></div>
+
+  <!-- Corners -->
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-tr"></div>
+  <div class="corner corner-bl"></div>
+  <div class="corner corner-br"></div>
+
+  <!-- Content -->
+  <div class="content">
+    <div class="label-top">PRÉDICTION TTC — COEFFICIENT α = 1</div>
+    <div class="title">La Puissance de Planck comme limite<br>dynamique de la Toile Cosmologique</div>
+    
+    <div class="formula-container">
+      <div class="formula">
+        <span class="formula-small">P</span><sub style="font-size:24px; vertical-align:bottom;">TTC</sub> = <span class="formula-small">c</span><sup style="font-size:32px; vertical-align:top;">5</sup> / <span class="formula-small">G</span>
+      </div>
+      <div class="value">Dérivé du lagrangien MCW-1 — Coefficient α<sub>TTC</sub> = 1 (vs α = 1/4, Gibbons-Schiller 2002)</div>
+    </div>
+
+    <div class="subtitle">Deux visages du champ Γ : Masse → E = mc² &nbsp;|&nbsp; Onde → P<sub>TTC</sub> = c⁵/G</div>
+    
+    <div class="author">
+      <span class="author-name">Dileve MBAMU</span> — Théorie de la Toile Cosmologique • dileve.com
+    </div>
+
+    <div class="ttc-badge">MÉCANISME Γ-Φ &nbsp;•&nbsp; FALSIFIABLE &nbsp;•&nbsp; 2026</div>
+  </div>
+
+  <div class="url">Échelle dimensionnelle : Planck (1899) &nbsp;|&nbsp; Dérivation & coefficient α=1 : TTC (Dileve MBAMU, 2026)</div>
+</div>
+
+<script>
+  // Generate stars
+  const starsContainer = document.getElementById('stars');
+  for (let i = 0; i < 120; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.width = (Math.random() * 2.5 + 0.5) + 'px';
+    star.style.height = star.style.width;
+    star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+    star.style.setProperty('--delay', (Math.random() * 5) + 's');
+    starsContainer.appendChild(star);
+  }
+</script>
+
+</body>
+</html>

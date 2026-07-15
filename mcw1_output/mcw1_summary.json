@@ -1,0 +1,13 @@
+{
+  "model": "MCW-1",
+  "relation": "r_c * v_inf = hbar / m_Gamma",
+  "n_galaxies_total": 50,
+  "n_galaxies_good": 50,
+  "log10_m_gamma_mean": -22.296442325574347,
+  "log10_m_gamma_std": 0.13056221628504,
+  "m_gamma_geometric_mean_eV": 5.053097457566168e-23,
+  "slope_logrc_vs_logv": -0.9616026819568105,
+  "slope_err": 0.06034949256680963,
+  "r_squared": 0.8410012246395225,
+  "mcw_predicted_slope": -1.0
+}
