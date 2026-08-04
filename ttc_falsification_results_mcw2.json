@@ -1,0 +1,67 @@
+{
+  "TF": {
+    "test": "Tully-Fisher",
+    "passed": "False",
+    "slope": 0.2360208320526416,
+    "slope_err": 0.009852897278730755,
+    "expected_slope": 0.25,
+    "sigma": 1.4187875456222345,
+    "r_squared": 0.7982794336530259,
+    "scatter_dex": 0.4284374171315527,
+    "n_galaxies": 147,
+    "criteria": {
+      "slope_ok": "True",
+      "scatter_ok": "False",
+      "correlation_ok": "True"
+    }
+  },
+  "LOGIC": {
+    "test": "Logical Contradiction (MCW-2)",
+    "passed": "True",
+    "T_B_coherent": 27.200062976250276,
+    "T_B_contradictory": 8717.833909068206,
+    "T_crit_calibrated": 136.00031488125137,
+    "ratio": 320.50785752518954,
+    "gamma": 2.0,
+    "delta": 0.1,
+    "criteria": {
+      "separation_ok": "True",
+      "threshold_ok": "True",
+      "stable_ok": "True"
+    }
+  },
+  "QUANT": {
+    "test": "Quantization",
+    "passed": true,
+    "E_numerical": [
+      9.869602370748417,
+      39.47838510322034,
+      88.82627506862626,
+      157.91315038410286,
+      246.73884041405614
+    ],
+    "E_theoretical": [
+      9.869604401089358,
+      39.47841760435743,
+      88.82643960980423,
+      157.91367041742973,
+      246.74011002723395
+    ],
+    "relative_errors": [
+      2.0571654730986086e-07,
+      8.232634199671839e-07,
+      1.852389656605235e-06,
+      3.2931495132119897e-06,
+      5.145548397750353e-06
+    ],
+    "phase_winding": [
+      2.0,
+      4.0,
+      6.0,
+      8.0,
+      10.0
+    ],
+    "energy_ok": true,
+    "phase_ok": true
+  }
+}
