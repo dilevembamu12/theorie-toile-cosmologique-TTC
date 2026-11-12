@@ -4,10 +4,9 @@
 où passe l'énergie de repos — 938,27 MeV pour le proton, 511 keV pour l'électron ?
 **Conclusion** : l'énergie ne disparaît nulle part (elle n'a jamais été séparée du champ), mais la
 transition **n'est pas autorisée** par MCW-1 en l'état. Le verrou n'est pas énergétique, il est
-**topologique**. Détail ci-dessous.
-**Statut de la note** : démonstration + no-go + échappatoires. Ne remplace aucun document.
-
----
+**topologique** (§4) — puis, plus grave, **il n'y a pas de mécanisme** : le champ dont on dénoue
+l'enroulement n'est pas celui qui porte la masse (§8). Détail ci-dessous.
+**Statut de la note** : démonstration + no-go + réfutation du mécanisme A + échappatoires. Ne remplace aucun document.
 
 ## 0. Résumé exécutif
 
@@ -21,6 +20,8 @@ transition **n'est pas autorisée** par MCW-1 en l'état. Le verrou n'est pas é
 | 6 | Le « Théorème du Déliement Métrique » doit être **requalifié** : ce n'est pas un théorème, c'est une transition inter-site avec barrière. | correction |
 | 7 | Le nœud d'enroulement est un **monopôle global** : $E = 2\pi n^2 v_\Gamma^2 R$, croît avec le rayon, indépendant du cœur. | **É** (calculé) |
 | 8 | Si le nœud *est* le proton : $v_\Gamma = m_p/\sqrt{2\pi} = 374{,}3$ MeV et $\alpha\gtrsim6{,}3$ — incompatible avec $v_\Gamma\sim M_{\rm Pl}$, $\alpha\sim10^{-34}$. | **É** (contrainte) |
+| 9 | Le mécanisme A (masse = énergie du nœud) **est réfuté** : il exigerait un seul $v_\Gamma$ pour tous les fermions, alors que le spectre en demande $10^{5}$ valeurs différentes (0,204 MeV pour $e$ → 68 893 MeV pour $t$). | **É** (réfutation, §8) |
+| 10 | En régime B (le seul viable), $\partial m/\partial n = 0$ : dénouer $\Phi$ ne change pas la masse. **Le déliement n'a pas d'objet physique défini** dans MCW-1 en l'état. Seule sortie : le programme C (soliton séparé de la masse). | **É** (verdict, §8.3) |
 
 ---
 
@@ -233,9 +234,8 @@ et rapproche dangereusement le procédé de l'annihilation.
 
 ## 7. Ce qu'il faut calculer ensuite (par ordre)
 
-1. **Trancher A vs B** (§1). Sans cela, tout le reste est suspendu. Test : la masse d'un fermion
-   suit-elle l'enroulement ? Si oui → A, et il faut réécrire §5 du White Paper ; si non → le
-   déliement est sans objet et il faut le dire.
+1. ~~**Trancher A vs B** (§1).~~ **FAIT — §8.** Verdict : A réfuté, B seul viable, donc
+   $\partial m/\partial n = 0$ et le déliement n'a pas d'objet. Reste à instruire le programme C.
 2. **Trancher $v_\Gamma$ : Planck ou QCD ?** (§4, conséquence 3). C'est une décision à prendre avant
    tout nouveau calcul, car elle change $\alpha$, $\lambda$, $\Lambda$ et la phénoménologie
    galaxies. Le choix « QCD » a l'avantage de supprimer le problème de hiérarchie ; il a le
@@ -245,4 +245,90 @@ et rapproche dangereusement le procédé de l'annihilation.
 4. **Vérifier l'anomalie** : les charges des fermions de §5 s'annulent-elles dans
    $\sum_i Y_i^3$ ? Si oui, l'échappatoire 5.2 est fermée et il ne reste que 5.1 / 5.3.
 
-*Note technique — 11/11/2026. Script associé : `ttc_deliement_barrier.py`.*
+---
+
+## 8. Trancher A vs B (§7.1) — le mécanisme A est réfuté, et le déliement tombe avec lui
+
+C'était le préalable déclaré au §1. Il est maintenant tranchable, et le résultat est plus dur que
+prévu : **ce n'est pas la barrière énergétique qui bloque le déliement, c'est l'absence de
+mécanisme de masse compatible.**
+
+### 8.1 L'argument, en deux branches exhaustives
+
+Le mécanisme A pose $m_0c^2 = E_{\rm nœud} = 2\pi n^2v_\Gamma^2 R$ (§4). La masse n'est alors
+déterminée que si $R$ l'est. Or $R$ est le rayon **extérieur** du monopôle global — aucune équation
+de MCW-1 ne le fixe. Deux cas seulement, tous deux fatals :
+
+| Cas | Ce qu'on impose à $R$ | Conséquence |
+|---|---|---|
+| **A1** | rien (statut réel dans MCW-1) | $m \propto R$ : balayage de 12 décades en $R$ ⇒ facteur $10^{12}$ sur la masse. **Aucune prédiction.** |
+| **A2** | $R = \hbar/(m_0c)$, seule échelle disponible | $m_0^2 = 2\pi n^2v_\Gamma^2$ ⇒ $m_0 = \sqrt{2\pi}\,|n|\,v_\Gamma$. **Aucun paramètre continu** : le spectre est entièrement contenu dans $|n|$. |
+
+Dans le cas A2 — le plus favorable, puisqu'il rend A prédictif —, les rapports de masse doivent être
+des **rapports d'entiers**, et surtout le modèle ne contient **qu'une seule échelle de masse** pour
+$|n|=1$. Il faut donc *un* $v_\Gamma$.
+
+### 8.2 Le test chiffré
+
+Si le nœud *est* la particule, $v_\Gamma = m/\sqrt{2\pi}$ doit être **le même** pour tous les
+fermions. Calcul (`ttc_mass_mechanism_test.py`, Partie 2) :
+
+| Fermion | $m$ (MeV) | $v_\Gamma$ exigé (MeV) |
+|---|---|---|
+| $e$ | 0,511 | **0,204** |
+| $\mu$ | 105,66 | 42,2 |
+| $\tau$ | 1776,9 | 709 |
+| $c$ | 1270 | 507 |
+| $b$ | 4180 | 1668 |
+| $t$ | 172 690 | **68 893** |
+
+**Étalement : $3{,}4\times10^{5}$.** Un champ $\Gamma$ unique ne peut pas valoir simultanément
+0,204 MeV et 68 893 MeV. Le mécanisme A est réfuté comme origine du spectre de masse des fermions.
+
+*Réserve d'honnêteté* : le test « rapports entiers » (Partie 4) donne des écarts trompeusement
+faibles (0,1 % pour $\mu/e$, 0,007 % pour $\tau/e$) — mais c'est un artefact : les entiers sont
+denses aux grands rapports. **Ce test ne prouve rien dans un sens ni dans l'autre** et ne doit pas
+être cité ; les §8.1 et §8.2 suffisent.
+
+### 8.3 La conséquence sur le déliement — le vrai verdict
+
+En régime B (Yukawa, la seule voie interne qui survive), la masse du fermion est
+$m \propto \Gamma$ **au point où se trouve le fermion**. Défaire l'enroulement de $\Phi$ ne change
+donc **rien** à sa masse :
+
+$$\frac{\partial m}{\partial n} = 0 \quad\text{(régime B)}$$
+
+Le fermion reste massif. Il n'y a pas de « soliton de transit » sans masse à trouver, pas de
+configuration $M=0$ à atteindre, pas de $\gamma\to\infty$ à approcher. **La prémisse du déliement ne
+tombe pas parce qu'une barrière est trop haute : elle tombe parce que le champ dont on dénoue
+l'enroulement n'est pas celui qui porte la masse.**
+
+$\Rightarrow$ Le « Théorème du Déliement Métrique » n'a, en l'état du corpus, **pas d'objet
+physique défini**. Ce n'est ni vrai ni faux : c'est une affirmation sur une quantité qui n'existe
+pas dans le Lagrangien.
+
+### 8.4 La seule sortie qui préserve le programme — mécanisme C
+
+| | Mécanisme | Statut | Effet du déliement |
+|---|---|---|---|
+| **A** | masse = énergie du nœud | **réfuté** (§8.1–8.2) | supprimerait la masse — mais A est mort |
+| **B** | masse = Yukawa à $\Gamma$ (§5 WP) | seul viable en interne | **nul** ; le déliement est sans objet |
+| **C** | masse = VEV d'un champ distinct ; le nœud est un soliton **séparé** | **à instruire** | porte sur le soliton, pas sur la masse |
+
+**C est la seule formulation où le programme garde un sens physique** — et elle change le cahier des
+charges : le déliement devient une affirmation sur *la structure d'un soliton*, pas sur *la masse
+d'une particule*. Concrètement, cela veut dire réintroduire un secteur scalaire supplémentaire (un
+VEV distinct de $v_\Gamma$) et montrer que les nœuds de $\Phi$ y sont métastables et manipulables.
+Tant que ce secteur n'est pas écrit, toute la littérature « déliement » du journal reste au stade
+**P** au mieux, **D** en réalité.
+
+### 8.5 Ce que cela change dans les documents existants
+
+| Document | Ce qu'il faudrait corriger |
+|---|---|
+| `TTC-White-Paper.md` §5 | déclarer explicitement que la masse **n'est pas** portée par $\Phi$ (ligne déjà présente : « non dérivé ») — et en tirer la conséquence : le déliement est hors sujet dans ce modèle |
+| `TTC-White-Paper.md` §6.3 | ajouter que le problème de hiérarchie n'est pas seulement non résolu, il est **mal posé** si $v_\Gamma$ doit valoir 0,2 MeV et $M_{\rm Pl}$ à la fois (§4 conséquence 3) |
+| veine « déliement » | requalifier en **programme C** : écrire le secteur scalaire supplémentaire avant toute nouvelle affirmation |
+
+*Note technique — 11/11/2026. Scripts associés : `ttc_deliement_barrier.py` (§4),
+`ttc_mass_mechanism_test.py` (§8).*

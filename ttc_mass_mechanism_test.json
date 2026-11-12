@@ -1,0 +1,161 @@
+{
+  "monopole_spectrum": [
+    {
+      "n": 1,
+      "m_over_vGamma": 2.5066282746310002,
+      "m_over_m1": 1.0
+    },
+    {
+      "n": 2,
+      "m_over_vGamma": 5.0132565492620005,
+      "m_over_m1": 2.0
+    },
+    {
+      "n": 3,
+      "m_over_vGamma": 7.519884823893001,
+      "m_over_m1": 3.0
+    },
+    {
+      "n": 4,
+      "m_over_vGamma": 10.026513098524001,
+      "m_over_m1": 4.0
+    },
+    {
+      "n": 5,
+      "m_over_vGamma": 12.533141373155,
+      "m_over_m1": 5.0
+    }
+  ],
+  "vgamma_required": [
+    {
+      "fermion": "e",
+      "m_MeV": 0.51099895,
+      "v_gamma_required_MeV": 0.2038590863957377
+    },
+    {
+      "fermion": "mu",
+      "m_MeV": 105.6583755,
+      "v_gamma_required_MeV": 42.15159326548087
+    },
+    {
+      "fermion": "tau",
+      "m_MeV": 1776.86,
+      "v_gamma_required_MeV": 708.8645803540898
+    },
+    {
+      "fermion": "u (MSbar 2 GeV)",
+      "m_MeV": 2.16,
+      "v_gamma_required_MeV": 0.8617153256670947
+    },
+    {
+      "fermion": "d (MSbar 2 GeV)",
+      "m_MeV": 4.67,
+      "v_gamma_required_MeV": 1.8630604494746907
+    },
+    {
+      "fermion": "s (MSbar 2 GeV)",
+      "m_MeV": 93.4,
+      "v_gamma_required_MeV": 37.26120898949382
+    },
+    {
+      "fermion": "c (MSbar 2 GeV)",
+      "m_MeV": 1270.0,
+      "v_gamma_required_MeV": 506.65669610981956
+    },
+    {
+      "fermion": "b (MSbar 2 GeV)",
+      "m_MeV": 4180.0,
+      "v_gamma_required_MeV": 1667.5787320779887
+    },
+    {
+      "fermion": "t (MSbar)",
+      "m_MeV": 172690.0,
+      "v_gamma_required_MeV": 68893.34240252341
+    }
+  ],
+  "vgamma_spread_max_over_min": 337945.8998888354,
+  "mass_vs_R": [
+    {
+      "R": 0.001,
+      "m_over_vgamma": 0.006283185307179587
+    },
+    {
+      "R": 1.0,
+      "m_over_vgamma": 6.283185307179586
+    },
+    {
+      "R": 1000.0,
+      "m_over_vgamma": 6283.185307179586
+    },
+    {
+      "R": 1000000.0,
+      "m_over_vgamma": 6283185.307179586
+    },
+    {
+      "R": 1000000000.0,
+      "m_over_vgamma": 6283185307.179586
+    }
+  ],
+  "mass_dynamic_range_over_12_decades_R": 1000000000000.0,
+  "integer_ratio_test": [
+    {
+      "fermion": "e",
+      "ratio_to_e": 1.0,
+      "nearest_int": 1,
+      "rel_dev_if_int": 0.0
+    },
+    {
+      "fermion": "mu",
+      "ratio_to_e": 206.76828298766566,
+      "nearest_int": 207,
+      "rel_dev_if_int": 0.0011206603304248827
+    },
+    {
+      "fermion": "tau",
+      "ratio_to_e": 3477.228280018971,
+      "nearest_int": 3477,
+      "rel_dev_if_int": 6.564999493496522e-05
+    },
+    {
+      "fermion": "u (MSbar 2 GeV)",
+      "ratio_to_e": 4.227014556487837,
+      "nearest_int": 4,
+      "rel_dev_if_int": 0.053705648148148266
+    },
+    {
+      "fermion": "d (MSbar 2 GeV)",
+      "ratio_to_e": 9.138962027221387,
+      "nearest_int": 9,
+      "rel_dev_if_int": 0.015205449678800912
+    },
+    {
+      "fermion": "s (MSbar 2 GeV)",
+      "ratio_to_e": 182.77924054442775,
+      "nearest_int": 183,
+      "rel_dev_if_int": 0.001207792826552367
+    },
+    {
+      "fermion": "c (MSbar 2 GeV)",
+      "ratio_to_e": 2485.328003120163,
+      "nearest_int": 2485,
+      "rel_dev_if_int": 0.00013197578740157815
+    },
+    {
+      "fermion": "b (MSbar 2 GeV)",
+      "ratio_to_e": 8180.0559472773875,
+      "nearest_int": 8180,
+      "rel_dev_if_int": 6.839473684303174e-06
+    },
+    {
+      "fermion": "t (MSbar)",
+      "ratio_to_e": 337945.89988883544,
+      "nearest_int": 337946,
+      "rel_dev_if_int": 2.9623429250956026e-07
+    }
+  ],
+  "verdict": {
+    "A": "refute comme mecanisme du spectre de masse",
+    "B": "seul mecanisme interne viable ; le deliement ne change pas la masse",
+    "C": "troisieme voie a instruire : soliton separe de la masse"
+  }
+}
