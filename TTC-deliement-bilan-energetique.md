@@ -6,7 +6,7 @@ où passe l'énergie de repos — 938,27 MeV pour le proton, 511 keV pour l'éle
 transition **n'est pas autorisée** par MCW-1 en l'état. Le verrou n'est pas énergétique, il est
 **topologique** (§4) — puis, plus grave, **il n'y a pas de mécanisme** : le champ dont on dénoue
 l'enroulement n'est pas celui qui porte la masse (§8). Détail ci-dessous.
-**Statut de la note** : démonstration + no-go + réfutation du mécanisme A + échappatoires. Ne remplace aucun document.
+**Statut de la note** : démonstration + no-go + réfutation du mécanisme A + test « lumière confinée » + échappatoires. Ne remplace aucun document.
 
 ## 0. Résumé exécutif
 
@@ -22,6 +22,9 @@ l'enroulement n'est pas celui qui porte la masse (§8). Détail ci-dessous.
 | 8 | Si le nœud *est* le proton : $v_\Gamma = m_p/\sqrt{2\pi} = 374{,}3$ MeV et $\alpha\gtrsim6{,}3$ — incompatible avec $v_\Gamma\sim M_{\rm Pl}$, $\alpha\sim10^{-34}$. | **É** (contrainte) |
 | 9 | Le mécanisme A (masse = énergie du nœud) **est réfuté** : il exigerait un seul $v_\Gamma$ pour tous les fermions, alors que le spectre en demande $10^{5}$ valeurs différentes (0,204 MeV pour $e$ → 68 893 MeV pour $t$). | **É** (réfutation, §8) |
 | 10 | En régime B (le seul viable), $\partial m/\partial n = 0$ : dénouer $\Phi$ ne change pas la masse. **Le déliement n'a pas d'objet physique défini** dans MCW-1 en l'état. Seule sortie : le programme C (soliton séparé de la masse). | **É** (verdict, §8.3) |
+| 11 | Dans le WP, « la lumière » ($\Phi$, $m_\Phi=0$) et « la matière » ($\Gamma$, massif) sont déjà deux champs distincts. « Matière = lumière confinée » n'est donc pas l'ontologie de la TTC, c'est une ontologie ajoutée — testable séparément. | **É** (§9.1) |
+| 12 | Testée, elle est **réfutée pour une cavité ordinaire** : une cavité n'a pas de trou dans son spectre, donc $m_\tau/m_e=3477$ exige ≥ 30 (loi quadratique) ou ≥ 1 739 (loi linéaire) leptons chargés. On en observe **3**. | **É** (réfutation, §9.2) |
+| 13 | Un puits à 3 états plafonne à une étendue de **8,8** contre 3477 exigée (facteur 395). Le paramètre de forme est épuisé : impossibilité, pas ajustement. | **É** (calculé, §9.3) |
 
 ---
 
@@ -244,6 +247,9 @@ et rapproche dangereusement le procédé de l'annihilation.
    énergie finie seulement si $U(1)_\Phi$ est jaugée). Objet bien défini, calculable numériquement.
 4. **Vérifier l'anomalie** : les charges des fermions de §5 s'annulent-elles dans
    $\sum_i Y_i^3$ ? Si oui, l'échappatoire 5.2 est fermée et il ne reste que 5.1 / 5.3.
+5. **Ouvrir le programme C sur un énoncé falsifiable** (§9.5–9.6) : chercher un défaut de $\Gamma$
+   à ***exactement trois*** modes zéro, de rapports $1:206{,}77:3477{,}2$. Problème d'indice +
+   problème spectral, tous deux bien posés. C'est le seul énoncé « déliement » qui soit testable.
 
 ---
 
@@ -332,3 +338,110 @@ Tant que ce secteur n'est pas écrit, toute la littérature « déliement » du 
 
 *Note technique — 11/11/2026. Scripts associés : `ttc_deliement_barrier.py` (§4),
 `ttc_mass_mechanism_test.py` (§8).*
+
+---
+
+## 9. « La matière est-elle de la lumière confinée ? » — test du comptage de modes
+
+**Question** : si la matière *est* de la lumière confinée, alors « délier » = libérer le mode.
+Est-ce possible ?
+
+### 9.1 Le Lagrangien sépare déjà les deux
+
+Point de départ, souvent confondu dans la veine « déliement » : dans le White Paper, « la lumière »
+et « la matière » ne sont **pas** le même objet.
+
+| | Champ | Masse | Rôle |
+|---|---|---|---|
+| « Lumière » | $\Phi$ (phase) | $m_\Phi^2 = 0$ — Goldstone, WP ligne 218 | propagation à $c$, quantification $\oint\nabla\Phi\cdot d\mathbf l=2\pi n$ |
+| « Matière » | $\Gamma$ (amplitude) | $m_\Gamma^2 = 2\alpha v_\Gamma^2 + 2\lambda v_T$ | $\psi=\Gamma e^{i\Phi}$, $|\psi|^2=\Gamma^2$ (WP §4.1) |
+
+Le mode **sans masse** est précisément celui dont on dénoue l'enroulement. Donc, en l'état du
+corpus, « matière = lumière confinée » n'est **pas** l'ontologie de la TTC : c'est une ontologie
+supplémentaire greffée sur elle. Elle doit donc être testée séparément — c'est l'objet de ce §.
+
+### 9.2 Le test : une cavité n'a pas de trou dans son spectre
+
+Dans le modèle « lumière confinée », la masse est l'énergie du mode :
+$$m_n = \frac{\hbar c\,x_n}{L}\ \text{(loi linéaire, cavité relativiste)}\qquad\text{ou}\qquad m_n=\frac{\hbar^2x_n^2}{2\mu L^2}\ \text{(loi quadratique)}$$
+où $x_n$ sont les zéros sans dimension fixés par la **forme** du puits, et $L$ ne fait que fixer
+l'échelle globale — donc **$L$ ne change aucun rapport**. Les rapports de masse sont entièrement
+déterminés par la forme : c'est une prédiction, donc une prise.
+
+**Théorème de comptage.** Les niveaux $l=0$ d'un puits sphérique vérifient
+$\left(k-\tfrac12\right)\pi < x_k < k\pi$, donc $x_N/x_1 < 2N$ pour un puits à $N$ états liés.
+Pour reproduire l'étalement observé $m_\tau/m_e = 3477{,}23$ :
+
+| Loi de dispersion | $x_N/x_1$ requis | $N_{\min}$ | Leptons chargés prédits | Observé |
+|---|---|---|---|---|
+| linéaire ($m\propto x$) | 3477 | **1739** | ≥ 1 739 | 3 |
+| quadratique ($m\propto x^2$) | 58,97 | **30** | ≥ 30 | 3 |
+
+**Une cavité contient tous les modes sous le mode le plus haut.** Il n'y a pas de trou : atteindre un
+rapport de 3477 impose des milliers d'états intermédiaires. On en observe **trois**. C'est une
+réfutation indépendante de la forme du puits.
+
+### 9.3 Vérification chiffrée
+
+**Puits infiniment profond** (forme fixe, zéro paramètre) — version la plus favorable, tous les
+moments $l\le4$ autorisés, 3 niveaux les plus bas :
+
+| Niveau | $x_n$ | Prédit (lin.) | Prédit (quad.) | Observé |
+|---|---|---|---|---|
+| 1 | 3,1416 | 1,000 | 1,000 | 1,000 |
+| 2 | 4,4934 | 1,430 | 2,046 | **206,768** |
+| 3 | 5,7635 | 1,835 | 3,366 | **3477,228** |
+
+Écart sur la 3e génération : **facteur 1 895**.
+
+**Puits fini** — qui n'a qu'**un seul** paramètre de forme $VL^2$, donc qui prédit réellement :
+
+| | Linéaire | Quadratique |
+|---|---|---|
+| Maximum atteignable avec exactement 3 états | 2,97 | **8,8** |
+| Étendue observée | 3477,2 | 3477,2 |
+| Manque | × 1171 | **× 395** |
+
+La fenêtre à 3 états est $R_0\in(5\pi/2,\,7\pi/2)$, soit $VL^2\in(61{,}7;\,120{,}9)$ ; 592 puits
+balayés, le maximum est atteint aux bornes. **Le paramètre de forme est épuisé : ce n'est pas un
+ajustement possible, c'est une impossibilité.**
+
+### 9.4 Bilan des paramètres
+
+| Ontologie | Paramètres | Verdict |
+|---|---|---|
+| Modèle standard (Yukawa) | 9 | référence |
+| Lumière confinée, une cavité par fermion | 18 | **pire** que le MS (2N > N) |
+| Lumière confinée, une seule forme de puits | 1 | **réfuté** (§9.2–9.3) |
+
+### 9.5 La seule version survivante, et ce qu'elle coûte
+
+Il reste **une** échappatoire : que le **nombre** de modes soit fixé par la **topologie** (théorème
+d'indice, comptage de modes zéro d'un défaut de $\Gamma$), et non par une cavité. Alors trois
+générations = invariant topologique — c'est une vraie prédiction, et elle est intéressante. Mais :
+
+- l'ontologie explique alors le **comptage** des générations, **pas** leurs rapports de masse ;
+- et surtout, la masse n'est plus dans le mode confiné du tout : elle est dans le défaut.
+
+### 9.6 Réponse à la question posée
+
+| Lecture de « délier de la lumière confinée » | Verdict |
+|---|---|
+| Libérer de la lumière déjà confinée (le mode sort) | **Oui — et c'est l'annihilation.** Prix : exactement $m_0c^2$, pas zéro. |
+| La matière reste localisée, garde son énergie, devient sans masse | **Non** : $M=m_0/\gamma$ exige $v=c$ exactement (§3) — infimum jamais atteint. |
+| On dénoue l'enroulement de $\Phi$ pour supprimer la masse | **Non** : $\partial m/\partial n = 0$ (§8). On dénoue le mauvais champ. |
+| La masse est l'énergie de confinement d'une cavité $\Gamma$ | **Oui, mais** ouvrir la cavité coûte $m_0c^2$ + la barrière de $U(\Gamma,T)$ |
+| Le nombre de modes est topologique | **Possible**, mais ne dit rien des rapports de masse |
+
+**Conclusion.** L'intuition « matière = lumière confinée » n'est pas absurde — un mode confiné
+possède bien une énergie de repos. Mais transposée à la TTC elle se heurte à trois murs
+successifs : (i) le champ dont on dénoue l'enroulement est le mode **sans** masse (§9.1) ;
+(ii) une cavité ordinaire prédirait des milliers de générations (§9.2) ; (iii) l'échappatoire
+topologique sauve le comptage mais abandonne les masses.
+
+**Ce qu'il faudrait calculer pour rouvrir la voie** : un défaut de $\Gamma$ à **exactement trois**
+modes zéro, dont les rapports d'énergie soient $1:206{,}77:3477{,}2$. C'est un problème d'indice +
+un problème spectral, tous deux bien posés — et c'est le premier énoncé du programme « déliement »
+qui soit réellement falsifiable.
+
+*Note technique — 11/11/2026. Script associé : `ttc_confinement_modes.py` (§9.2–9.4).*

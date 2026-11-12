@@ -1,0 +1,80 @@
+{
+  "observed": {
+    "m_mu_over_m_e": 206.76828298766566,
+    "m_tau_over_m_e": 3477.228280018971
+  },
+  "counting_theorem": [
+    {
+      "loi": "lineaire (cavite relativiste, m ~ x)",
+      "alpha": 1.0,
+      "x_N_over_x_1_requis": 3477.228280018971,
+      "N_min_theorique": 1739
+    },
+    {
+      "loi": "quadratique (puits Schrodinger, m ~ x^2)",
+      "alpha": 2.0,
+      "x_N_over_x_1_requis": 58.96802760834867,
+      "N_min_theorique": 30
+    }
+  ],
+  "parameter_free_well": [
+    {
+      "niveau": 1,
+      "x_n": 3.141592653589793,
+      "predit_lineaire": 1.0,
+      "predit_quadratique": 1.0,
+      "observe_m_lepton_m_e": 1.0,
+      "ecart_lineaire": 1.0,
+      "ecart_quadratique": 1.0
+    },
+    {
+      "niveau": 2,
+      "x_n": 4.493409457909063,
+      "predit_lineaire": 1.4302966531242025,
+      "predit_quadratique": 2.0457485159382953,
+      "observe_m_lepton_m_e": 206.76828298766566,
+      "ecart_lineaire": 144.56321528545908,
+      "ecart_quadratique": 101.07219014299521
+    },
+    {
+      "niveau": 3,
+      "x_n": 5.76345919689455,
+      "predit_lineaire": 1.8345660409884257,
+      "predit_quadratique": 3.365632558747946,
+      "observe_m_lepton_m_e": 3477.228280018971,
+      "ecart_lineaire": 1895.39553351021,
+      "ecart_quadratique": 1033.1574286031212
+    }
+  ],
+  "finite_well_3states": {
+    "n_points_3_etats": 592,
+    "VL2_min": 61.70274636510501,
+    "VL2_max": 120.89822294022618,
+    "span_lineaire_max_atteignable": 2.9671037822173645,
+    "span_quadratique_max_atteignable": 8.80370485444859,
+    "borne_theorique_lineaire": 6.0,
+    "borne_theorique_quadratique": 36.0,
+    "span_observe": 3477.228280018971
+  },
+  "parameter_budget": [
+    {
+      "ontologie": "Modele standard (Yukawa)",
+      "parametres": 9,
+      "commentaire": "1 couplage de Yukawa par fermion"
+    },
+    {
+      "ontologie": "Lumiere confinee, une cavite par fermion",
+      "parametres": 18,
+      "commentaire": "profondeur V et taille L par fermion -> 2N"
+    },
+    {
+      "ontologie": "Lumiere confinee, une seule forme de puits",
+      "parametres": 1,
+      "commentaire": "1 parametre de forme, mais REFUTE (Partie 3)"
+    }
+  ],
+  "verdict": {
+    "cavity_ontology": "refutee : spectre sans trou -> N_min leptons",
+    "topological_ontology": "survit pour le comptage, muette sur les rapports"
+  }
+}
