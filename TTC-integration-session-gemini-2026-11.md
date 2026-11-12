@@ -2,39 +2,45 @@
 
 **Source** : `Gemini-Analyse et synthèse de la TTC-20261111-1913.md`
 (19 923 lignes, 1,53 Mo, ~100 tours de parole, export du 11/11/2026)
-**Objet** : extraire de cette session ce qui entre dans le corpus scientifique TTC, ce qui doit être corrigé, et ce qui reste hors-corpus (SF / éditorial).
+**Objet** : recenser ce que cette session ajoute au corpus TTC, à quel stade de démonstration, et ce qui doit être corrigé.
 **Statut** : note d'audit — ne remplace aucun document existant.
 
 ---
 
-## 0. Méthode de tri
+## 0. Convention de classement — **tout est TTC**
 
-La session mélange trois régimes de discours qu'il faut **impérativement désérialiser** :
+La session entière relève du corpus TTC. Les développements menés sous le personnage *Dileve* (civilisation avancée, ingénierie de la Toile, gravité artificielle, transit, informatique 1D) ne constituent **pas** un régime de discours séparé : ce sont des **extensions de la théorie**, au même titre que la dérivation de Maxwell ou le secteur sombre. Ils nourrissent le programme de recherche et, à terme, le White Paper.
 
-| Code | Régime | Ce qu'on en fait |
-|------|--------|------------------|
-| **[P]** | Physique TTC (dérivation, calc) | À vérifier, puis intégrer au White Paper / aux solveurs |
-| **[S]** | Spéculation « cadre SF » (personnage *Dileve*, civilisation avancée) | À conserver **étiqueté SF**, jamais présenté comme résultat |
-| **[E]** | Éditorial (blog dileve.com, SEO, LinkedIn, taxonomie) | Hors corpus — usage commercial |
+Ce que la note classe n'est donc **pas l'appartenance** — tout appartient à la TTC — mais le **stade de démonstration** de chaque énoncé :
 
-Le journal est globalement honnête sur l'étiquetage [S] dans les **articles de blog** (« *Ceci est un article de science-fiction fondé sur une théorie spéculative* »). En revanche, dans les réponses de type « Dileve, expert de sa civilisation », le glissement [S] → [P] est fréquent et doit être surveillé à la relecture.
+| Code | Stade interne TTC | Traitement |
+|------|-------------------|------------|
+| **É** | Établi / recalculé, cohérent avec MCW-1 | Entre au White Paper comme résultat |
+| **A** | Axiome assumé (choix de départ, non dérivable) | Énoncé comme postulat, au rang du postulat TTC |
+| **P** | Proposé et dérivé, non encore contrôlé numériquement | À passer aux solveurs (`mcw3_solver_*`, `ttc_hardening_solver.py`) |
+| **E** | Estimation d'ordre de grandeur | Publiable, à condition d'afficher le calcul et le mot « estimation » |
+| **D** | À démontrer — verrou identifié | Chantier ouvert, à ne pas présenter comme acquis |
+
+Le seul point de vigilance n'est donc pas la *nature* des énoncés (tous TTC) mais la **traçabilité de leur stade** : un même document ne doit pas faire passer une cible de recherche pour un résultat. C'est exactement la discipline que s'impose déjà `TTC-benchmark-catalogue.md` avec ses pastilles 🟢/🟡/🔴 — on l'applique ici.
+
+Corollaire éditorial : les articles de blog (08–10/11) ne sont pas « hors corpus », ce sont des **supports de diffusion de la TTC** ; leur encart « cadre de science-fiction » est un choix de communication, pas un déclassement théorique.
 
 ---
 
 ## 1. Cartographie chronologique
 
-| Période | Thème dominant | Régime |
-|---------|----------------|--------|
-| 22/09 | Assimilation du dépôt (snapshot `2f66895`) : MCW-1, Maxwell, Ψ=Γe^{iΦ}, CKM/PMNS, P_max | [P] |
-| 22–23/09 | **Phase I** : 5 axes (cœur galactique, solveur 1D, Tully-Fisher, ancrage CKM/PMNS, écrantage λ), création `TTC-Phase1-Consolidation.md` + `phase1_solver.py` | [P] |
-| 23/09 | Valeur de Λ ; comparaison ΛCDM ; applications technologiques de l'énergie noire | [P] / [S] |
-| 24–28/09 | Horizon cosmologique, expansion, EPR/intrication, verrous de phase, trous noirs ↔ matière/énergie noire | mixte |
-| 29/09–10 | Réseau 1D primordial, « puits de tension » sans matière, filaments, PoC 1 mètre, tissu métrique | [S] dominant |
-| 10/10 | Sondage d'articles (quant-ph/0107110, etc.) pour « pièces détachées » du banc | [S] |
-| 11/10 | 10 énigmes irrésolues, paradoxe de l'information, temps/gravité | mixte |
-| 12/10–04/11 | Neutrinos/IceCube, antimatière, dimensions supplémentaires, informatique 1D (S-bits / S-ASM) | mixte |
-| 05/11 | **Lot d'équations nouvelles** (annihilation duale, polarisation chirale, invariant CPT du soliton) | [P] à vérifier |
-| 08–10/11 | Articles de blog (1 : *Invariant Cinématique*, 2 : *Enroulement Résonant*), SEO, taxonomie, LinkedIn | [E] |
+| Période | Thème dominant | Stade |
+|---------|----------------|-------|
+| 22/09 | Assimilation du dépôt (snapshot `2f66895`) : MCW-1, Maxwell, Ψ=Γe^{iΦ}, CKM/PMNS, P_max | **É** (état du dépôt) |
+| 22–23/09 | **Phase I** : 5 axes (cœur galactique, solveur 1D, Tully-Fisher, ancrage CKM/PMNS, écrantage λ), création `TTC-Phase1-Consolidation.md` + `phase1_solver.py` | **P** (sauf écrantage : **D**) |
+| 23/09 | Valeur de Λ ; comparaison ΛCDM ; applications technologiques de l'énergie noire | **É** pour Λ, **D** pour l'écrantage |
+| 24–28/09 | Horizon cosmologique, expansion, EPR/intrication, verrous de phase, trous noirs ↔ matière/énergie noire | **P** |
+| 29/09–10 | Réseau 1D primordial, « puits de tension » sans matière, filaments, PoC 1 mètre, tissu métrique | **P**, avec **D** sur le bilan énergétique |
+| 10/10 | Sondage d'articles (quant-ph/0107110, etc.) pour « pièces détachées » du banc | **P** (veille instrumentale) |
+| 11/10 | 10 énigmes irrésolues, paradoxe de l'information, temps/gravité | **D** (programme) |
+| 12/10–04/11 | Neutrinos/IceCube, antimatière, dimensions supplémentaires, informatique 1D (S-bits / S-ASM) | **P** |
+| 05/11 | **Lot d'équations nouvelles** (annihilation duale, polarisation chirale, invariant CPT du soliton) | **P**, à recalculer |
+| 08–10/11 | Articles de blog (1 : *Invariant Cinématique*, 2 : *Enroulement Résonant*), SEO, taxonomie, LinkedIn | **A** + **P**, support de diffusion |
 
 ---
 
@@ -78,11 +84,11 @@ et l'annihilation inverse ($e^-+e^+\to 2\gamma$) est le déliement spontané $w_
 
 ### 2.5 Branche « réseau 1D / informatique 1D »
 
-Émergée tardivement sous l'impulsion des questions : hiérarchie `Trame 1D → S-Bits → S-ASM → applications` (imprimantes topologiques, boucliers de phase, réabsorption de transit). **Aucune formalisation mathématique produite** : c'est une arborescence conceptuelle, à ne pas inscrire au White Paper en l'état, mais à conserver comme cahier d'intentions (cf. `TTC-AST-mapping-*` qui joue déjà ce rôle côté KontEx).
+Émergée tardivement sous l'impulsion des questions : hiérarchie `Trame 1D → S-Bits → S-ASM → applications` (imprimantes topologiques, boucliers de phase, réabsorption de transit). C'est une **branche de plein droit de la TTC** — la Trame 1D est l'objet même du postulat — mais elle est aujourd'hui au stade **P/D** : l'arborescence est posée, la formalisation mathématique reste à écrire. Elle rejoint naturellement `TTC-discrete-spec-v1.x` (secteur discret) et `TTC-AST-mapping-*` (côté KontEx), qui sont les deux endroits du dépôt où cette formalisation peut s'ancrer sans repartir de zéro.
 
-### 2.6 Pont possible avec l'état réel du dépôt
+### 2.6 Pont à établir avec le formalisme déjà vérifié
 
-Les « **puits de tension sans matière** » ($\Gamma$ élevé, $T$ creux, pas de $M_b$) ressemblent formellement à la **branche AdS** déjà identifiée dans `TTC-dark-energy-step1.5-correction.md` (vide AdS si $v_T=0$ ; dS si $v_T=\lambda v_\Gamma^2/\beta$). C'est la seule connexion sérieuse entre la veine [S] et le corpus [P] : à creuser ou à écarter explicitement, mais pas à laisser flottante.
+Les « **puits de tension sans matière** » ($\Gamma$ élevé, $T$ creux, pas de $M_b$ — les « relais de saut » du 29/09) ressemblent formellement à la **branche AdS** déjà identifiée dans `TTC-dark-energy-step1.5-correction.md` (vide AdS si $v_T=0$ ; dS si $v_T=\lambda v_\Gamma^2/\beta$). C'est le point de contact le plus direct entre cette extension et le secteur sombre déjà calculé : soit on l'établit (et les puits de tension deviennent un cas de la solution à deux champs), soit on montre qu'il ne tient pas — mais il ne doit pas rester flottant.
 
 ---
 
@@ -108,7 +114,7 @@ Comme $\omega_Z = 2m_ec^2/\hbar$, la formule donne $m_0 = 2m_e$. Correct : $m_0 
 ### 3.5 🔴 La « démonstration » CPT de décohérence nulle est invalide
 
 Le raisonnement repose sur $\hat\Theta\hat V_{\rm ext}\hat\Theta^{-1} = -\hat V_{\rm ext}$, **postulé** et non démontré, puis sur $\mathcal M = -\mathcal M \Rightarrow \mathcal M = 0$. Deux fautes : (i) un potentiel externe n'est pas « impair sous CPT » en général ; (ii) l'argument d'annulation exige que l'état final ait les mêmes propriétés de symétrie que l'état initial, ce qui n'est pas établi. La conclusion « $\mathcal F = 1{,}000000$ » n'est pas un résultat : c'est une pétition de principe.
-➜ Conserver comme **hypothèse SF** de non-décohérence, jamais comme théorème.
+➜ Conserver comme **hypothèse TTC de non-décohérence**, au stade **D** : elle est intéressante et potentiellement démontrable proprement (en exhibant l'opérateur de symétrie réel de l'état $n=0$), mais elle n'est pas démontrée dans le journal.
 
 ### 3.6 🟠 $\varepsilon_{\rm chiral} = 1/(1{,}6\times10^9)$ : recopie d'une mesure
 
@@ -153,7 +159,7 @@ $\oint\nabla(\Phi+\Phi_{\rm déliel})\cdot d\mathbf l = 0 \Rightarrow \Gamma_{\r
 ## 6. Trois directions possibles pour la suite
 
 **Option A — Consolidation Phase I (rigueur).**
-Reprendre `TTC-Phase1-Consolidation.md` en le réécrivant sur le formalisme à deux champs vérifié ; produire un vrai solveur BVP 1D $(\Gamma,\Phi,T)$ avec tests de convergence ; republier proprement le résultat Tully-Fisher. C'est la seule voie qui consolide le corpus [P].
+Reprendre `TTC-Phase1-Consolidation.md` en le réécrivant sur le formalisme à deux champs vérifié ; produire un vrai solveur BVP 1D $(\Gamma,\Phi,T)$ avec tests de convergence ; republier proprement le résultat Tully-Fisher. C'est la voie qui consolide le socle **[É]** et fait passer les axes 1–4 de **P** à **É**.
 
 **Option B — Trancher le verrou du déliement (§3.7).**
 Écrire le bilan de $T^{00}$ pour la transition $n=1\to n=0$ dans MCW-1 : si l'énergie de masse ne peut pas être absorbée par $(\Gamma,\Phi,T)$, le « théorème » tombe — et il vaut mieux le savoir avant d'écrire d'autres articles dessus.
