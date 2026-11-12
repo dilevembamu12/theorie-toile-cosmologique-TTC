@@ -60,7 +60,20 @@ La relation `references` est scindée en deux sous-types car la physique diffèr
 | Sous-type | Symétrie de $J_{ij}$ | Usage | Formule |
 |-----------|:---:|-------|---------|
 | `references:bidirectional` | $J_{ij} = -J_{ji}$ | Imports mutuels, dépendances cycliques légitimes | Standard |
-| `references:directed` | $J_{ij} \geq 0$, $J_{ji} = 0$ | Appels de fonction, flux unidirectionnel | $J_{ij} = \Gamma_i^2 \cdot w_{ij} \cdot \max(\Phi_j - \Phi_i, 0)$ |
+| `references:directed` | Antisymétrique | Appels de fonction, flux unidirectionnel | $J_{ij} = \Gamma_i^2 \cdot w_{ij} \cdot (\Phi_j - \Phi_i)$ |
+
+> ⚠️ **Correction théorique (2026-08-15) :** la formule initiale
+> $J_{ij} = \Gamma_i^2 w_{ij} \max(\Phi_j - \Phi_i, 0)$ crée un courant
+> unidirectionnel qui VIOLE la loi de Kirchhoff (un nœud ne peut pas être
+> une source sans puits).
+>
+> **Résolution MVP :** utiliser le courant ANTISYMÉTRIQUE standard et laisser
+> la directionalité s'exprimer dans la TOPOLOGIE (arêtes orientées). Le signe
+> de $J_{ij}$ indique la direction du flux.
+>
+> **Résolution v2 (optionnelle) :** introduire un nœud de MASSE $\mathcal{G}$
+> ($\Gamma_\mathcal{G} = v_\Gamma$, $\Phi_\mathcal{G} = 0$, $T_\mathcal{G} = 0$)
+> qui ferme les boucles de courant dirigé.
 
 ### 2.3 Nouvelle relation TTC : `instantiates`
 
@@ -93,14 +106,20 @@ T_B^{\text{(init)}} &= T_A + \alpha_{\text{inh}} \cdot (\Gamma_B - \Gamma_A)^2
 
 $$\boxed{\begin{aligned}
 \Gamma_B^{\text{(init)}} &= \Gamma_A \cdot \eta_{\text{impl}} \\[4pt]
-\Phi_B^{\text{(init)}} &= 0 \quad \text{(nouvelle phase — rupture du contrat)} \\[4pt]
+\Phi_B^{\text{(init)}} &= \Phi_A + \Delta\Phi_{\text{impl}} \quad \text{(déphasage contractuel, préserve la jauge)} \\[4pt]
 T_B^{\text{(init)}} &= T_{\text{base}} + \lambda \cdot (\Gamma_A - \Gamma_B)^2
 \end{aligned}}$$
 
 | Paramètre | Valeur | Signification |
 |-----------|--------|---------------|
 | $\eta_{\text{impl}}$ | $0.7$ | Facteur de concrétisation (l'interface est plus « cohérente » que l'implémentation) |
+| $\Delta\Phi_{\text{impl}}$ | $\pi/4$ | Déphasage contractuel (l'implémentation concrétise le contrat sans le suivre à l'identique) |
 | $T_{\text{base}}$ | $0.1$ | Tension plancher |
+
+> ⚠️ **Correction théorique (2026-08-15) :** $\Phi_B = 0$ (version initiale)
+> brisait la symétrie de jauge $\Phi \to \Phi + c$. La valeur ABSOLUE de $\Phi$
+> n'a aucun sens physique — seule la DIFFÉRENCE $\Phi_B - \Phi_A$ compte.
+> $\Phi_B = \Phi_A + \pi/4$ préserve l'invariance de jauge.
 
 ### 3.3 `injects` → `depends_on`
 
@@ -116,7 +135,7 @@ L'injection **augmente la tension du consommateur** $T_A$ proportionnellement à
 ### 3.4 `calls` → `references:directed`
 
 $$\boxed{\begin{aligned}
-J_{AB}^{\text{(init)}} &= \Gamma_A^2 \cdot w_{AB} \cdot \max(\Phi_B - \Phi_A,\ 0) \\[4pt]
+J_{AB}^{\text{(init)}} &= \Gamma_A^2 \cdot w_{AB} \cdot (\Phi_B - \Phi_A) \quad \text{(antisymétrique — conservation Kirchhoff)} \\[4pt]
 \Phi_B^{\text{(init)}} &= \Phi_B + \frac{J_{AB}}{\Gamma_A^2} \quad \text{(transfert de phase)} \\[4pt]
 T_B^{\text{(init)}} &= T_B + \beta \cdot |J_{AB}| \quad \text{(échauffement par le flux)}
 \end{aligned}}$$
@@ -125,11 +144,16 @@ T_B^{\text{(init)}} &= T_B + \beta \cdot |J_{AB}| \quad \text{(échauffement par
 |-----------|--------|---------------|
 | $\beta$ | $0.3$ | Coefficient d'échauffement (chaque appel « chauffe » la cible) |
 
+> ⚠️ La formule $J_{AB} = \Gamma_A^2 w_{AB} \max(\Phi_B-\Phi_A, 0)$ (version
+> initiale) créait un courant unidirectionnel non conservatif. Le courant
+> antisymétrique ci-dessus respecte la loi de Kirchhoff. La directionalité
+> de l'appel est portée par la TOPOLOGIE (arête orientée), pas par la formule.
+
 ### 3.5 `instantiates` → `instantiates`
 
 $$\boxed{\begin{aligned}
 \Gamma_B^{\text{(init)}} &= \Gamma_A \cdot e^{-\kappa \cdot T_A} \\[4pt]
-\Phi_B^{\text{(init)}} &= 0 \quad \text{(nouvelle instance, phase vierge)} \\[4pt]
+\Phi_B^{\text{(init)}} &= \Phi_A \cdot \gamma_{\text{inst}} \quad \text{(l'instance hérite de la phase, modulée)} \\[4pt]
 T_B^{\text{(init)}} &= T_A \cdot \gamma_{\text{inst}} \\[4pt]
 T_A^{\text{(après)}} &= T_A \cdot (1 - \gamma_{\text{inst}}) \quad \text{(la tension se décharge dans l'instance)}
 \end{aligned}}$$
@@ -138,6 +162,10 @@ T_A^{\text{(après)}} &= T_A \cdot (1 - \gamma_{\text{inst}}) \quad \text{(la te
 |-----------|--------|---------------|
 | $\kappa$ | $0.5$ | Amortissement de la tension (MCW-3) |
 | $\gamma_{\text{inst}}$ | $0.3$ | Fraction de tension transférée à l'instance |
+
+> ⚠️ **Statut théorique :** la conversion $T \to \Gamma$ est le **postulat MCW-3**
+> (non dérivé du lagrangien). C'est l'analogue TTC de la décroissance radioactive :
+> la tension se décharge dans la matière créée. À valider empiriquement.
 
 ### 3.6 `throws` → `depends_on`
 
@@ -229,7 +257,7 @@ FONCTION INITIALISER_CHAMPS(cible: Node, champs: Fields, source: Node, relation:
       cible.T ← IF non_catché ALORS T_max SINON 0.2
     
     ReferencesDirected:
-      J ← source.Γ² * w(source, cible) * max(cible.Φ - source.Φ, 0)
+      J ← source.Γ² * w(source, cible) * (cible.Φ - source.Φ)  // antisymétrique
       cible.Φ ← cible.Φ + J / source.Γ²
       cible.T ← cible.T + β * |J|
     
@@ -269,9 +297,13 @@ FONCTION verifier_kirchhoff(G'):
 FONCTION REDISTRIBUER_RESIDU(i, résidu):
   SI N_out(i) est vide ALORS RETOURNER
   
-  poids_total ← Σ_{j ∈ N_out(i)} w_ij
+  // Redistribution par ADMITTANCES Y_ij = Γ_i²·w_ij (pas par poids seuls)
+  // — correction théorique 2026-08-15 : la redistribution proportionnelle
+  //   aux poids w_ij viole la structure de J_ij = Γ_i²·w_ij·(Φ_j−Φ_i)
+  admittance_totale ← Σ_{j ∈ N_out(i)} Γ_i² * w_ij
   POUR CHAQUE j ∈ N_out(i):
-    correction ← résidu * (w_ij / poids_total)
+    Y_ij ← Γ_i² * w_ij
+    correction ← résidu * (Y_ij / admittance_totale)
     Φ_j ← Φ_j + correction / Γ_i²
 ```
 
@@ -462,8 +494,8 @@ impl Default for TtcParams {
 | Symbole | Signification | Unité |
 |---------|---------------|-------|
 | $\Gamma_i$ | Cohérence au nœud $i$ | Sans dimension, $\in [0, 1]$ |
-| $\Phi_i$ | Phase au nœud $i$ | Radians, $\in [0, 2\pi)$ |
-| $T_i$ | Tension au nœud $i$ | Sans dimension, $\in [0, 1]$ |
+| $\Phi_i$ | Phase au nœud $i$ | **$\Phi \in \mathbb{R}$ non compactifié** (jamais de modulo) |
+| $T_i$ | Tension au nœud $i$ | Sans dimension, $\in [0, 1]$ (clamp uniquement pour l'affichage) |
 | $w_{ij}$ | Poids du lien $i \to j$ | $\in [0, 1]$ |
 | $J_{ij}$ | Courant de phase de $i$ vers $j$ | $\Gamma^2 \cdot \text{rad}$ |
 | $\alpha$ | Auto-interaction $\Gamma$ (potentiel Higgs) | Sans dimension |
@@ -473,6 +505,12 @@ impl Default for TtcParams {
 | $\varepsilon$ | Tolérance Kirchhoff | Sans dimension |
 | $T_{\text{critique}}$ | Seuil de contradiction topologique | 0.95 |
 | $T_{\text{max}}$ | Tension maximale (exception non-catchée) | 1.0 |
+
+> ⚠️ **Rappel théorique (§spec v1.1) :** $\Phi \in \mathbb{R}$ — la périodicité
+> $\Phi \to \Phi + 2\pi n$ est une SYMÉTRIE, pas une contrainte de stockage.
+> Le gradient se calcule directement : $\nabla\Phi_{ij} = \Phi_j - \Phi_i$ SANS modulo,
+> SANS unwrap. L'utilisation de $\Phi \in [0, 2\pi)$ est une régression qui
+> réintroduit les discontinuités artificielles identifiées lors de l'audit KontEx v0.1.
 
 ---
 

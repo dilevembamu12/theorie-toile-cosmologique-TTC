@@ -1,0 +1,39 @@
+{
+  "regimes": [
+    {
+      "regime": "gel\u00e9 (\u03bc=0.3)",
+      "mu": 0.3,
+      "Vmin": 0.68,
+      "phi_initial": 0.44654756023594283,
+      "Omega_phi_today": 0.688807999632101,
+      "w_today": -0.9998338358827232,
+      "residual": 3.678990445621366e-10
+    },
+    {
+      "regime": "slow-roll (\u03bc=1.5)",
+      "mu": 1.5,
+      "Vmin": 0.0,
+      "phi_initial": 0.9749826778130153,
+      "Omega_phi_today": 0.6888080000338652,
+      "w_today": -0.6812219087360826,
+      "residual": 3.386513292014115e-11
+    },
+    {
+      "regime": "oscillant (\u03bc=30)",
+      "mu": 30.0,
+      "Vmin": 0.6,
+      "phi_initial": 0.46017448017002544,
+      "Omega_phi_today": 0.6888079878432591,
+      "w_today": -0.9906936311949354,
+      "residual": 1.2156740947233402e-08
+    }
+  ],
+  "adiabatic": {
+    "m_Gamma2": 1.9999999999999997e+56,
+    "m_T2": 2.0736e-66,
+    "m_T2_positive": true,
+    "m_Gamma2_over_H2_max": 1.060367649857196e+121,
+    "m_Gamma2_over_m_T2": 9.64506172839506e+121,
+    "valid_adiabatic": true
+  }
+}
