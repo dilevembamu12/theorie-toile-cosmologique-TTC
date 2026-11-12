@@ -1,0 +1,229 @@
+{
+  "part1_nec": {
+    "rho": "Gamma(r)**2*Derivative(Phi(r), r)**2/2 + U(Gamma(r), T(r)) + Derivative(Gamma(r), r)**2/2 + Derivative(T(r), r)**2/2",
+    "p_radial": "Gamma(r)**2*Derivative(Phi(r), r)**2/2 - U(Gamma(r), T(r)) + Derivative(Gamma(r), r)**2/2 + Derivative(T(r), r)**2/2",
+    "p_tangentielle": "-Gamma(r)**2*Derivative(Phi(r), r)**2/2 - U(Gamma(r), T(r)) - Derivative(Gamma(r), r)**2/2 - Derivative(T(r), r)**2/2",
+    "rho_plus_p_radial": "Gamma(r)**2*Derivative(Phi(r), r)**2 + Derivative(Gamma(r), r)**2 + Derivative(T(r), r)**2",
+    "rho_plus_p_tangentielle": "0",
+    "somme_de_carres_attendue": "Gamma(r)**2*Derivative(Phi(r), r)**2 + Derivative(Gamma(r), r)**2 + Derivative(T(r), r)**2",
+    "identite_verifiee": true,
+    "tangentielle_nulle": true,
+    "controle_numerique_positif": {
+      "n_echantillons": 20000,
+      "nec_min": 0.003095625669175206,
+      "rho_min": -3929.8344468015043,
+      "rho_negatif_possible": true,
+      "nec_jamais_negatif": true
+    }
+  },
+  "part2_conformal": {
+    "table": [
+      {
+        "Omega2": 1.0,
+        "vecteur": "genre temps",
+        "norme": -3.91,
+        "signe": -1
+      },
+      {
+        "Omega2": 1.0,
+        "vecteur": "genre lumiere",
+        "norme": 0.0,
+        "signe": 0
+      },
+      {
+        "Omega2": 1.0,
+        "vecteur": "genre espace",
+        "norme": 0.96,
+        "signe": 1
+      },
+      {
+        "Omega2": 1e-06,
+        "vecteur": "genre temps",
+        "norme": -3.91e-06,
+        "signe": -1
+      },
+      {
+        "Omega2": 1e-06,
+        "vecteur": "genre lumiere",
+        "norme": 0.0,
+        "signe": 0
+      },
+      {
+        "Omega2": 1e-06,
+        "vecteur": "genre espace",
+        "norme": 9.6e-07,
+        "signe": 1
+      },
+      {
+        "Omega2": 1000000.0,
+        "vecteur": "genre temps",
+        "norme": -3910000.0,
+        "signe": -1
+      },
+      {
+        "Omega2": 1000000.0,
+        "vecteur": "genre lumiere",
+        "norme": 0.0,
+        "signe": 0
+      },
+      {
+        "Omega2": 1000000.0,
+        "vecteur": "genre espace",
+        "norme": 960000.0,
+        "signe": 1
+      },
+      {
+        "Omega2": 1e+30,
+        "vecteur": "genre temps",
+        "norme": -3.91e+30,
+        "signe": -1
+      },
+      {
+        "Omega2": 1e+30,
+        "vecteur": "genre lumiere",
+        "norme": 0.0,
+        "signe": 0
+      },
+      {
+        "Omega2": 1e+30,
+        "vecteur": "genre espace",
+        "norme": 9.6e+29,
+        "signe": 1
+      }
+    ],
+    "classification_inchangee": true
+  },
+  "part3_filaments": {
+    "filaments": [
+      {
+        "L_Mpc": 3.0,
+        "sigma_kms": 200.0,
+        "phi_over_c2": 4.450600224214474e-07,
+        "delay_s": 274852491.5067554,
+        "delay_yr": 8.709549886770711,
+        "temps_vide_yr": 9784691.3315023,
+        "delta_relatif": 8.901200448428948e-07,
+        "sens": "RETARD"
+      },
+      {
+        "L_Mpc": 10.0,
+        "sigma_kms": 300.0,
+        "phi_over_c2": 1.0013850504482567e-06,
+        "delay_s": 2061393686.3006654,
+        "delay_yr": 65.32162415078034,
+        "temps_vide_yr": 32615637.771674335,
+        "delta_relatif": 2.002770100896513e-06,
+        "sens": "RETARD"
+      },
+      {
+        "L_Mpc": 30.0,
+        "sigma_kms": 500.0,
+        "phi_over_c2": 2.7816251401340463e-06,
+        "delay_s": 17178280719.172215,
+        "delay_yr": 544.3468679231695,
+        "temps_vide_yr": 97846913.315023,
+        "delta_relatif": 5.5632502802680925e-06,
+        "sens": "RETARD"
+      }
+    ],
+    "corde_cosmique": [
+      {
+        "Gmu": 1e-07,
+        "deficit_angle_rad": 2.5132741228718346e-06,
+        "retard": "nul (metrique localement minkowskienne)",
+        "raccourci": "nul"
+      }
+    ]
+  },
+  "part4_transit": {
+    "table": [
+      {
+        "M_over_m0": 1.0,
+        "gamma": 1.0,
+        "beta_v_over_c": 0.0,
+        "t_over_d_c": null
+      },
+      {
+        "M_over_m0": 0.5,
+        "gamma": 2.0,
+        "beta_v_over_c": 0.8660254037844386,
+        "t_over_d_c": 1.1547005383792517
+      },
+      {
+        "M_over_m0": 0.1,
+        "gamma": 10.0,
+        "beta_v_over_c": 0.99498743710662,
+        "t_over_d_c": 1.005037815259212
+      },
+      {
+        "M_over_m0": 0.01,
+        "gamma": 100.0,
+        "beta_v_over_c": 0.9999499987499375,
+        "t_over_d_c": 1.0000500037503126
+      },
+      {
+        "M_over_m0": 0.0001,
+        "gamma": 10000.0,
+        "beta_v_over_c": 0.9999999949999999,
+        "t_over_d_c": 1.0000000050000002
+      },
+      {
+        "M_over_m0": 1e-08,
+        "gamma": 100000000.0,
+        "beta_v_over_c": 0.9999999999999999,
+        "t_over_d_c": 1.0000000000000002
+      },
+      {
+        "M_over_m0": 0.0,
+        "gamma": null,
+        "beta_v_over_c": 1.0,
+        "t_over_d_c": 1.0
+      }
+    ],
+    "commentaire": "t/(d/c) >= 1 toujours ; la borne est atteinte seulement a M=0, ou l'objet est sans masse et donc ne peut pas etre au repos : pas un vehicule."
+  },
+  "part5_local_G": {
+    "variation_de_G": [
+      {
+        "epsilon": 1e-06,
+        "variation_relative_de_G": -1.999999e-06
+      },
+      {
+        "epsilon": 0.001,
+        "variation_relative_de_G": -0.001999
+      },
+      {
+        "epsilon": 0.1,
+        "variation_relative_de_G": -0.19
+      },
+      {
+        "epsilon": 1.0,
+        "variation_relative_de_G": -1.0
+      }
+    ],
+    "cout_en_unites_alpha_vGamma4": [
+      {
+        "epsilon": 1e-06,
+        "DeltaU_over_alpha_v4": 1.0000009999246173e-12
+      },
+      {
+        "epsilon": 0.001,
+        "DeltaU_over_alpha_v4": 1.0010002499996973e-06
+      },
+      {
+        "epsilon": 0.1,
+        "DeltaU_over_alpha_v4": 0.01102500000000002
+      },
+      {
+        "epsilon": 1.0,
+        "DeltaU_over_alpha_v4": 2.25
+      }
+    ]
+  },
+  "verdict": {
+    "delier": "refute (§8, §9)",
+    "instantané": "refute (M=0 <=> v=c ; metrique conforme)",
+    "filaments_1D": "refute (Shapiro ; corde localement plate)",
+    "blocage_structurel": "NEC identiquement satisfaite en MCW-1"
+  }
+}

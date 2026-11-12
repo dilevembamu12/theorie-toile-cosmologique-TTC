@@ -6,7 +6,7 @@ où passe l'énergie de repos — 938,27 MeV pour le proton, 511 keV pour l'éle
 transition **n'est pas autorisée** par MCW-1 en l'état. Le verrou n'est pas énergétique, il est
 **topologique** (§4) — puis, plus grave, **il n'y a pas de mécanisme** : le champ dont on dénoue
 l'enroulement n'est pas celui qui porte la masse (§8). Détail ci-dessous.
-**Statut de la note** : démonstration + no-go + réfutation du mécanisme A + test « lumière confinée » + échappatoires. Ne remplace aucun document.
+**Statut de la note** : démonstration + no-go + réfutation du mécanisme A + test « lumière confinée » + no-go supraluminique + échappatoires. Ne remplace aucun document.
 
 ## 0. Résumé exécutif
 
@@ -25,6 +25,9 @@ l'enroulement n'est pas celui qui porte la masse (§8). Détail ci-dessous.
 | 11 | Dans le WP, « la lumière » ($\Phi$, $m_\Phi=0$) et « la matière » ($\Gamma$, massif) sont déjà deux champs distincts. « Matière = lumière confinée » n'est donc pas l'ontologie de la TTC, c'est une ontologie ajoutée — testable séparément. | **É** (§9.1) |
 | 12 | Testée, elle est **réfutée pour une cavité ordinaire** : une cavité n'a pas de trou dans son spectre, donc $m_\tau/m_e=3477$ exige ≥ 30 (loi quadratique) ou ≥ 1 739 (loi linéaire) leptons chargés. On en observe **3**. | **É** (réfutation, §9.2) |
 | 13 | Un puits à 3 états plafonne à une étendue de **8,8** contre 3477 exigée (facteur 395). Le paramètre de forme est épuisé : impossibilité, pas ajustement. | **É** (calculé, §9.3) |
+| 14 | **Voyage supraluminique : impossible en TTC.** MCW-1 est une somme de scalaires canoniques minimaux, donc $\rho+p_r=(\nabla\Gamma)^2+\Gamma^2(\nabla\Phi)^2+(\nabla T)^2\ge0$ et $\rho+p_t=0$ : la NEC est satisfaite **identiquement**. Pas de warp, pas de trou de ver. | **É** (symbolique, §10.1) |
+| 15 | La métrique effective du WP est **conforme**, donc les cônes de lumière sont invariants. Aucune valeur de $(\Gamma,T)$ ne rend la lumière plus rapide. | **É** (§10.2) |
+| 16 | Les filaments cosmiques **retardent** (Shapiro : 65 ans sur 10 Mpc) et une corde cosmique est localement plate : zéro raccourci. | **É** (calculé, §10.3) |
 
 ---
 
@@ -445,3 +448,139 @@ un problème spectral, tous deux bien posés — et c'est le premier énoncé du
 qui soit réellement falsifiable.
 
 *Note technique — 11/11/2026. Script associé : `ttc_confinement_modes.py` (§9.2–9.4).*
+
+---
+
+## 10. « Voyager instantanément en déliant la matière, via les filaments 1D » — no-go structurel
+
+L'affirmation se décompose en **trois maillons**, et il faut les tester séparément, parce que
+chacun tombe pour une raison différente — et le troisième tombe pour une raison qui ne dépend
+même pas des deux premiers.
+
+| # | Maillon | Verdict | Où |
+|---|---|---|---|
+| 1 | délier la matière en onde | **réfuté** | §8 (la masse n'est pas dans l'enroulement de $\Phi$) + §9 (aucune cavité ne reproduit le spectre) |
+| 2 | une onde va donc instantanément | **réfuté** | §10.2 et §10.4 |
+| 3 | emprunter les filaments 1D | **réfuté** | §10.3 |
+
+Et indépendamment de tout cela :
+
+| # | Blocage structurel | Conséquence |
+|---|---|---|
+| 4 | MCW-1 est une somme de scalaires canoniques minimaux ⇒ la **condition d'énergie nulle est satisfaite identiquement** | **aucune** bulle de warp, **aucun** trou de ver traversable — non par limite technologique, mais par propriété du Lagrangien (§10.1) |
+| 5 | la métrique effective du White Paper est **conforme** à $g_{\mu\nu}$ | les cônes de lumière sont **identiques** : aucune valeur de $\Gamma$ ni de $T$ ne rend la lumière plus rapide (§10.2) |
+
+### 10.1 La condition d'énergie nulle est protégée par le Lagrangien
+
+Tenseur de MCW-1 (`TTC-White-Paper.md` §2.3) pour une configuration statique **arbitraire**
+$\Gamma(r),\Phi(r),T(r)$, vérifié symboliquement (`ttc_ftl_no_go.py`, partie 1) :
+
+$$\rho = \tfrac12(\nabla\Gamma)^2+\tfrac12\Gamma^2(\nabla\Phi)^2+\tfrac12(\nabla T)^2+U$$
+$$p_r = \tfrac12(\nabla\Gamma)^2+\tfrac12\Gamma^2(\nabla\Phi)^2+\tfrac12(\nabla T)^2-U$$
+$$p_t = -\tfrac12(\nabla\Gamma)^2-\tfrac12\Gamma^2(\nabla\Phi)^2-\tfrac12(\nabla T)^2-U$$
+
+d'où, **exactement** :
+
+$$\boxed{\rho+p_r=(\nabla\Gamma)^2+\Gamma^2(\nabla\Phi)^2+(\nabla T)^2\ \ge 0},\qquad \boxed{\rho+p_t=0}$$
+
+Trois conséquences, dans cet ordre :
+
+1. **La NEC est satisfaite identiquement.** L'identité est vraie pour *toute* valeur des champs et
+   pour *tout* potentiel $U$ — elle ne dépend que de la structure cinétique. Une somme de scalaires
+   canoniques ne peut pas violer la NEC ($\rho+p$ est une somme de carrés, point).
+2. **$\rho$ peut être négatif** (si $U<0$, ce qui est possible dans le secteur sombre), mais cela ne
+   suffit pas : la NEC porte sur $\rho+p$, pas sur $\rho$. Contrôle numérique sur 20 000 tirages avec
+   $U$ arbitraire, dont négatif : $\rho_{\min}=-3{,}9\times10^{3}$ mais $(\rho+p_r)_{\min}=+3{,}1\times10^{-3}>0$.
+3. Par l'équation de Raychaudhuri, NEC satisfaite ⇒ **pas de défocalisation des géodésiques nulles**
+   ⇒ pas de trou de ver traversable, pas de bulle de type Alcubierre.
+
+### 10.2 La métrique effective est conforme — donc causalement inerte
+
+`TTC-White-Paper.md` ligne 51 pose $g^{\rm eff}_{\mu\nu}=f(\Gamma^2-2\lambda T)\,g_{\mu\nu}$ :
+c'est un **facteur conforme**. Or sous $g\to\Omega^2g$, la norme de tout vecteur est multipliée par
+$\Omega^2$ : le **signe** est préservé, donc la classification causale (temps / lumière / espace)
+est invariante. Vérifié numériquement pour $\Omega^2$ de $10^{-6}$ à $10^{30}$ : classification
+identique dans les 12 cas.
+
+$$\Rightarrow\ \text{aucune configuration de }(\Gamma,T)\text{ ne déplace les cônes de lumière.}$$
+
+**Seule porte** : une partie **disforme** (proportionnelle à $\partial_\mu\Gamma\partial_\nu\Gamma$)
+modifierait les cônes. Elle n'est **pas écrite** dans MCW-1. La rouvrir serait écrire une autre
+théorie.
+
+### 10.3 Les filaments sont des lignes de retard, pas des couloirs
+
+Un filament cosmique est un **puits** de potentiel gravitationnel. Le trajet de la lumière y subit
+un **délai de Shapiro** $\Delta t = \frac{2}{c^3}\int|\Phi|\,dl$, avec $|\Phi|\approx\sigma^2$ (viriel) :
+
+| Longueur | $\sigma$ | $\vert\Phi\vert/c^2$ | Retard | Trajet dans le vide | Effet relatif |
+|---|---|---|---|---|---|
+| 3 Mpc | 200 km/s | $4{,}45\times10^{-7}$ | **8,7 ans** | $9{,}8\times10^{6}$ ans | $8{,}9\times10^{-7}$ |
+| 10 Mpc | 300 km/s | $1{,}00\times10^{-6}$ | **65,3 ans** | $3{,}3\times10^{7}$ ans | $2{,}0\times10^{-6}$ |
+| 30 Mpc | 500 km/s | $2{,}78\times10^{-6}$ | **544 ans** | $9{,}8\times10^{7}$ ans | $5{,}6\times10^{-6}$ |
+
+**Le signe est défavorable** : un filament retarde. Ce n'est pas un raccourci, c'est une ligne à
+retard.
+
+Et le seul objet **vraiment 1D** — la corde cosmique — ne fait pas mieux : sa métrique est
+**localement minkowskienne**, l'effet se réduit à un angle déficitaire $8\pi G\mu\approx2{,}5\times10^{-6}$ rad
+(pour $G\mu=10^{-7}$). Retard : nul. Raccourci : **nul**. Une corde cosmique ne fait que lentiller.
+
+> **L'intuition « filament = couloir » est géométriquement fausse.** Un couloir est un chemin plus
+> court ; un filament est un puits plus profond.
+
+### 10.4 L'état de transit n'est pas un véhicule
+
+Rappel du §3 : $M=m_0/\gamma$. Le temps de traversée d'une distance $d$ vaut $t=(d/v)$ :
+
+| $M/m_0$ | $\gamma$ | $v/c$ | $t/(d/c)$ |
+|---|---|---|---|
+| 1 (au repos) | 1 | 0 | **infini** |
+| 0,5 | 2 | 0,866 | 1,155 |
+| 0,1 | 10 | 0,995 | 1,005 |
+| $10^{-4}$ | $10^{4}$ | 0,999999995 | 1,000000 |
+| 0 | $\infty$ | 1 | **1 (minimum)** |
+
+Le temps **ne descend jamais sous $d/c$**. Et le cas $M=0$ n'est pas un véhicule : à $M=0$ l'objet
+n'a plus de référentiel au repos, donc **on ne peut ni y monter au départ, ni en descendre à
+l'arrivée** — ce sont précisément les deux moments où un vaisseau doit être massif, donc où
+$v<c$. Un vaisseau doit être massif **avant et après** : c'est une contradiction avec l'état de
+transit par construction.
+
+### 10.5 Ce que la TTC autorise réellement
+
+Une seule ingénierie est ouverte par le corpus : $G\propto1/v_\Gamma^2$ (`TTC-White-Paper.md` §3.2),
+donc **agir sur $\Gamma$ localement, c'est agir sur $G$ localement**.
+
+| $\Gamma/v_\Gamma-1$ | Variation de $G$ | Coût $\Delta U/(\alpha v_\Gamma^4)$ |
+|---|---|---|
+| $10^{-6}$ | $-2{,}0\times10^{-4}\,\%$ | $1{,}0\times10^{-12}$ |
+| $10^{-3}$ | $-0{,}20\,\%$ | $1{,}0\times10^{-6}$ |
+| $10^{-1}$ | $-19\,\%$ | $1{,}1\times10^{-2}$ |
+| $1$ | $-100\,\%$ (gravité annulée) | $2{,}25$ |
+
+C'est une affirmation forte et originale : **la TTC prédit qu'on peut modifier $G$ localement.**
+Mais le coût est $\alpha v_\Gamma^4$ ; avec $v_\Gamma\sim M_{\rm Pl}$ et $\alpha\sim1$, c'est
+l'échelle de Planck. Et cela ne raccourcit aucune distance — cela change la gravité.
+
+### 10.6 Verdict
+
+> **Selon la TTC, non : on ne peut pas voyager instantanément.** Pas par trois barrières
+> successives indépendantes, et pas même en les franchissant toutes les trois — parce que la
+> structure du Lagrangien (NEC) et la nature de la métrique effective (conforme) interdisent la
+> propagation supraluminique **quelle que soit** la configuration des champs.
+
+Ce n'est pas une déception pour le programme : c'est le premier endroit où la TTC **répond** au
+lieu de laisser la question ouverte. Un modèle qui interdit le voyage supraluminique est un modèle
+plus contraint, donc plus falsifiable.
+
+**Les quatre seules portes, et leur prix :**
+
+| Porte | Ce qu'il faudrait écrire | Statut |
+|---|---|---|
+| Cinétique non canonique ($k$-essence, condensat de ghost) | sortir de $\mathcal L_{\mathcal W}$ | autre théorie |
+| Couplage disforme $\partial_\mu\Gamma\partial_\nu\Gamma$ | terme absent de MCW-1 | à instruire |
+| Trou de ver à matière exotique | NEC violée — impossible ici (§10.1) | **fermée** |
+| Téléportation quantique (information, pas matière) | physique standard, pas de FTL | hors sujet |
+
+*Note technique — 11/11/2026. Script associé : `ttc_ftl_no_go.py` (§10.1–10.5).*
